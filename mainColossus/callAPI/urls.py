@@ -8,6 +8,7 @@ from .views import callAPI
 urlpatterns = [
 
     path('getAPI', views.getWelcome, name="getWelcome"),
+    path('scraping/<str:name>', views.showInfo, name="getscraping"),
     path('', callAPI.as_view(template_name='callAPI.html'), name='callAPI'),
 ]
 

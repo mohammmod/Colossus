@@ -9,6 +9,11 @@ def getWelcome(request):
     response = services.callAPI()
     return HttpResponse(response)
 
+def showInfo(request, name):
+    info = services.getdatePage(name)
+
+    return HttpResponse(json.dumps(info), content_type="application/json")
+
 
 def getApiData(request):
     response_data = {}
