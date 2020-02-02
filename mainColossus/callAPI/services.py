@@ -4,21 +4,6 @@ import json
 from . import sdk
 from bs4 import BeautifulSoup
 
-# try:
-#   from sdk import VRClient
-# except ImportError, e:
-#   import sys
-#   print 'Import error:', e
-#   print 'sys.path:', sys.path
-#   blah = __import__('sdk')
-#   print 'sdk is %r' % sdk
-#   try:
-#     print 'sdk is at %s (%s)' % (sdk.__file__, sdk.__path__)
-#   except Exception, e:
-#     print 'Cannot give details on sdk (%s)' % e
-
-
-
 userID='606116'
 apiKey='522a9427e6872ecc6464b25d7af6c948'
 
@@ -40,16 +25,12 @@ def callAPI():
 
     # instantiate VedicRishiClient class
     client = sdk.VRClient(userID, apiKey)
-    # client.matchMakingCall()
 
     # call horoscope apis
     responseData = client.call(resource, data['date'], data['month'], data['year'], data['hour'], data['minute'], data['latitude'], data['longitude'], data['timezone'])
 
     loaded_json = json.loads(responseData.text)
 
-    # print(loaded_json)  # <== prints json response.
-
-    # print(loaded_json['ascendant'])  # <== prints single key
     return loaded_json['asc_report']['ascendant']
 
 
@@ -64,7 +45,6 @@ def getdatePage(name):
     response_data['place'] = soup.find_all('td')[7].get_text()
     response_data['timeZone'] = soup.find_all('td')[9].get_text()
     return response_data
-
 
 # Name Abigail, Cantika
 # Gender: F born on 12 July 1993 at 11:30 (= 11:30 AM )
