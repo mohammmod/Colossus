@@ -2,6 +2,7 @@ import os
 import requests
 import json
 from . import sdk
+from bs4 import BeautifulSoup
 
 # try:
 #   from sdk import VRClient
@@ -50,3 +51,22 @@ def callAPI():
 
     # print(loaded_json['ascendant'])  # <== prints single key
     return loaded_json['asc_report']['ascendant']
+
+
+def getdatePage(name):
+    url = "https://www.astro.com/astro-databank/" + name
+    page = requests.get(url)
+
+    soup = BeautifulSoup(page.content, 'html.parser')
+    response_data = {}
+    response_data['name'] = soup.find_all('td')[1].get_text()
+    response_data['born'] = soup.find_all('td')[5].get_text()
+    response_data['place'] = soup.find_all('td')[7].get_text()
+    response_data['timeZone'] = soup.find_all('td')[9].get_text()
+    return response_data
+
+
+# Name Abigail, Cantika
+# Gender: F born on 12 July 1993 at 11:30 (= 11:30 AM )
+# Place Jakarta, Indonesia, 6s10, 106e48
+# Timezone SST h7e (is standard time)
