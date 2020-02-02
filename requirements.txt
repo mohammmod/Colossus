@@ -1,0 +1,3 @@
+django
+SQLalchemy
+-f git+git://github.com/astrologyapi/astro-api-python-client.git
