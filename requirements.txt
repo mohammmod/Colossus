@@ -1,3 +1,3 @@
 django
-SQLalchemy
+bs4
 -f git+git://github.com/astrologyapi/astro-api-python-client.git
