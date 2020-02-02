@@ -4,6 +4,7 @@ from django.http import HttpResponse
 import json
 from django.views.generic import TemplateView
 from . import services
+from .models import Birth_Data
 
 def getWelcome(request):
     response = services.callAPI()
@@ -11,7 +12,7 @@ def getWelcome(request):
 
 def showInfo(request, name):
     info = services.getdatePage(name)
-
+    Birth_Data(name=info["name"], date_birth=info["born"],place=["place"],timeZone=["timeZone"]).save()
     return HttpResponse(json.dumps(info), content_type="application/json")
 
 
