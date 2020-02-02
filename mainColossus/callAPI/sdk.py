@@ -1,12 +1,14 @@
 import requests
 
+
 class VRClient:
-    baseURL = "https://json.astrologyapi.com/v1/general_ascendant_report"
+    baseURL = "	https://json.astrologyapi.com/v1/"
 
     def __init__(self, uid, key):
         self.userID = uid
         self.apiKey = key
 
+#Changed the code here because it was wrong (used to be cls. instead of self.)
     def getUrl(self):
         return self.baseURL
 

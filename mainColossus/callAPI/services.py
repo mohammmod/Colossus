@@ -18,7 +18,7 @@ from . import sdk
 
 
 
-userID=606116
+userID='606116'
 apiKey='522a9427e6872ecc6464b25d7af6c948'
 
 def callAPI():
@@ -35,10 +35,11 @@ def callAPI():
     }
 
     # api name which is to be called
-    resource = "astro_details"
+    resource = "general_ascendant_report"
 
     # instantiate VedicRishiClient class
     client = sdk.VRClient(userID, apiKey)
+    # client.matchMakingCall()
 
     # call horoscope apis
     responseData = client.call(resource, data['date'], data['month'], data['year'], data['hour'], data['minute'], data['latitude'], data['longitude'], data['timezone'])
@@ -48,14 +49,4 @@ def callAPI():
     # print(loaded_json)  # <== prints json response.
 
     # print(loaded_json['ascendant'])  # <== prints single key
-    return loaded_json['report']
-
-
-# def callAPI():
-#     url = 'https://json.astrologyapi.com/v1/western_horoscope'
-#     r = requests.post(url, headers={'Authorization':'Bearer %s' % 'access_token'})
-#     droplets = r.json()
-#     droplet_list = []
-#     for i in range(len(droplets['droplets'])):
-#         droplet_list.append(droplets['droplets'][i])
-#     return droplet_list
+    return loaded_json['asc_report']['ascendant']
